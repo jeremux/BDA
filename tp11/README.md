@@ -22,10 +22,36 @@ SELECT ?x ?t WHERE
 ```
 On obtient 33 réponses.
 
+Le type de John est Person.
+
 ###Q2:
+
+```sparql
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT * WHERE {
+?x humans:hasSpouse ?y
+}
+
+```
+Cette requête retourne tous les couples, il y en a 6.
 
 ###Q3:
 
+La propriété utilisée pour donner l'âge est : <http://www.inria.fr/2007/09/11/humans.rdfs#age>
+
+Personnes ayant plus de 20 ans:
+
+```sparql
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?z WHERE {
+?x humans:age ?y
+FILTER (xsd:integer(?y) > 20 )
+?x humans:name  ?z
+}
+
+```
 ###Q4:
 *  1
 
