@@ -137,8 +137,8 @@ Toutes les proriétés de John:
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
 SELECT DISTINCT ?ppty WHERE 
 {
- ?x ?ppty ?z
- FILTER regex(?x,"John")
+	?x ?ppty ?z
+	FILTER regex(?x,"John")
 }
 ```
 
@@ -150,8 +150,8 @@ Description de John:
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
 DESCRIBE ?x WHERE 
 {
- ?x ?ppty ?z
- FILTER regex(?x,"John")
+	?x ?ppty ?z
+	FILTER regex(?x,"John")
 }
 ```
 
@@ -160,35 +160,75 @@ Voir Q5-2.png pour le graphe.
 ###Q6:
 *  1
 
-```sparql
+Tous les couples (parent,enfant)
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?y WHERE 
+{
+	?x humans:hasChild ?y
+}
 ```
 
 *  2
 
-```sparql
+Personnes avec au moins un enfant
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x WHERE 
+{
+	?x humans:hasChild ?y
+}
 ```
 
 *  3
 
-```sparql
-
-```
+La requête précédente retourne 5 réponses dont un doublon.
 
 *  4
 
+Pour éviter les doublons on ajoute la clause DISTINCT:
+
 ```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT  ?x WHERE 
+{
+	?x humans:hasChild ?y
+}
 
 ```
 
 *  5
 
-```sparql
+Les hommes qui n'ont pas d'enfant:
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT  ?x WHERE 
+{
+	?x a humans:Man
+	OPTIONAL
+	{
+		?x humans:hasChild ?y
+	}
+	FILTER(!bound(?y))
+}
 ```
 
 *  6
+
+Femmes mariées avec éventuellement leurs enfants:
+
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?z WHERE 
+{
+	?x a humans:Woman
+	{?y humans:hasSpouse ?x} UNION {?x humans:hasSpouse ?y}
+	OPTIONAL {?x humans:hasChild ?z}
+}
+```
 
 ###Q7:
 
