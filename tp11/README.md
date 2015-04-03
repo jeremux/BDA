@@ -9,7 +9,17 @@ Jeremy FONTAINE
 ## Exo 1
 ###Q1:
 
-Récupère tous les types définis dans les triplets RDFs:
+```sparql
+
+SELECT ?x ?t WHERE
+{
+ ?x rdf:type ?t
+ FILTER regex(?x,"John")
+}
+
+```
+Cette requête récupère tous les types définis dans les triplets RDFs:
+on obtient 33 réponses.
 
 ```sparql
 
@@ -20,8 +30,6 @@ SELECT ?x ?t WHERE
 }
 
 ```
-On obtient 33 réponses.
-
 Le type de John est Person.
 
 ###Q2:
@@ -123,11 +131,31 @@ SELECT DISTINCT ?x  WHERE
 ###Q5:
 *  1
 
-```sparql
+Toutes les proriétés de John:
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT DISTINCT ?ppty WHERE 
+{
+ ?x ?ppty ?z
+ FILTER regex(?x,"John")
+}
 ```
 
 *  2
+
+Description de John:
+
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+DESCRIBE ?x WHERE 
+{
+ ?x ?ppty ?z
+ FILTER regex(?x,"John")
+}
+```
+
+Voir Q5-2.png pour le graphe.
 
 ###Q6:
 *  1
