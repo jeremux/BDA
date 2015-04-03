@@ -54,11 +54,11 @@ Personnes ayant plus de 20 ans:
 ```sparql
 
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT ?z WHERE 
+SELECT ?nom WHERE 
 {
-	?x humans:age ?y
-	FILTER (xsd:integer(?y) > 20 )
-	?x humans:name  ?z
+	?person humans:age ?age
+	FILTER (xsd:integer(?age) > 20 )
+	?person humans:name  ?nom
 }
 
 ```
@@ -85,10 +85,10 @@ Personnes et évntuellement leur pointure:
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT ?x ?z WHERE 
+SELECT ?person ?tailleChaussure WHERE 
 {
-	?x rdf:type humans:Person
-	OPTIONAL {?x humans:shoesize ?z}
+	?person rdf:type humans:Person
+	OPTIONAL {?person humans:shoesize ?tailleChaussure}
 }
 ```
 
@@ -98,12 +98,12 @@ Personnes et évntuellement leur pointure si celle-ci est supérieur à 8:
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT ?x ?z WHERE 
+SELECT ?person ?tailleChaussure WHERE 
 {
-	?x rdf:type humans:Person
+	?person rdf:type humans:Person
 	OPTIONAL {
-		?x humans:shoesize ?z 
-		FILTER (xsd:integer(?z) > 8) 
+		?person humans:shoesize ?tailleChaussure 
+		FILTER (xsd:integer(?tailleChaussure) > 8) 
 	}
 }
 ```
@@ -114,16 +114,16 @@ Personnes avec pointure supérieur à 8 ou avec taille de chemise supérieur à 
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT DISTINCT ?x  WHERE 
+SELECT DISTINCT ?person  WHERE 
 {
 	{
-		?x humans:shoesize ?y 
-		FILTER (xsd:integer(?y) > 8) 
+		?person humans:shoesize ?tailleChaussure 
+		FILTER (xsd:integer(?tailleChaussure) > 8) 
 	} 
 	UNION
 	{
-		?x humans:shirtsize ?z
-		FILTER (xsd:integer(?z) > 12)
+		?person humans:shirtsize ?tailleShirt
+		FILTER (xsd:integer(?tailleShirt) > 12)
 	}
 }
 ```
@@ -164,9 +164,11 @@ Tous les couples (parent,enfant)
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT ?x ?y WHERE 
+SELECT ?parent ?enfant WHERE 
 {
-	?x humans:hasChild ?y
+	{?parent humans:hasChild ?enfant}
+	UNION
+	{?enfant humans:hasParent ?parent}
 }
 ```
 
@@ -176,15 +178,17 @@ Personnes avec au moins un enfant
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT ?x WHERE 
+SELECT ?parent WHERE 
 {
-	?x humans:hasChild ?y
+	{?parent humans:hasChild ?enfant}
+	UNION
+	{?enfant humans:hasParent ?parent}
 }
 ```
 
 *  3
 
-La requête précédente retourne 5 réponses dont un doublon.
+La requête précédente retourne 6 réponses dont un doublon.
 
 *  4
 
@@ -192,9 +196,11 @@ Pour éviter les doublons on ajoute la clause DISTINCT:
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT DISTINCT  ?x WHERE 
+SELECT DISTINCT ?parent WHERE 
 {
-	?x humans:hasChild ?y
+	{?parent humans:hasChild ?enfant}
+	UNION
+	{?enfant humans:hasParent ?parent}
 }
 
 ```
@@ -205,14 +211,14 @@ Les hommes qui n'ont pas d'enfant:
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT DISTINCT  ?x WHERE 
+SELECT DISTINCT  ?homme WHERE 
 {
-	?x a humans:Man
+	?homme a humans:Man
 	OPTIONAL
 	{
-		?x humans:hasChild ?y
+		?homme humans:hasChild ?enfant
 	}
-	FILTER(!bound(?y))
+	FILTER(!bound(?enfant))
 }
 ```
 
@@ -222,18 +228,29 @@ Femmes mariées avec éventuellement leurs enfants:
 
 ```sparql
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-SELECT ?x ?z WHERE 
+SELECT ?femme ?enfant WHERE 
 {
-	?x a humans:Woman
-	{?y humans:hasSpouse ?x} UNION {?x humans:hasSpouse ?y}
-	OPTIONAL {?x humans:hasChild ?z}
+	?femme a humans:Woman
+	{?y humans:hasSpouse ?femme} UNION {?femme humans:hasSpouse ?y}
+	OPTIONAL {?femme humans:hasChild ?enfant}
+	OPTIONAL {?enfant humans:hasParent ?femme}
 }
 ```
 
 ###Q7:
 
-```sparql
+Couples de personnes avec la même taille de chemise:
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?personne1 ?personne2
+WHERE 
+{
+	?personne1 humans:shirtsize ?taille1
+	?personne2 humans:shirtsize ?taille2
+	FILTER (xsd:integer(?taille1) = xsd:integer(?taille2))
+	FILTER (xsd:string(?personne1) < xsd:string(?personne2))
+ }
 ```
 
 ###Q8:
