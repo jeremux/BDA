@@ -430,9 +430,19 @@ Ceci est dû aux règles d'inférences domaine/co-domaine (règle 6 du cours).
 
 ###Q3:
 
-```sparql
+Les professeurs (Lecturer) et leur type:
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?prof ?type
+WHERE 
+{
+	?prof a humans:Lecturer
+	?prof a ?type
+}
 ```
+
+On obtient 7 résultats.
 
 ###Q4:
 
