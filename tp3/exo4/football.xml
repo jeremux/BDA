@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New document created with EditiX at Fri Jan 30 21:21:55 CET 2015 -->
+
+<football xsi:noNamespaceSchemaLocation="football2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <clubs>
+        <club id="OM">Marseille</club>
+        <club id="PSG"> Paris</club>
+        <club id="OM"> Lille</club>
+    </clubs>
+
+    <championnats>
+        <journee date="2002-02-24">
+            <rencontre>
+                <equipeA score="0" >OM</equipeA>
+                <equipeB score="2">PSG</equipeB>
+            </rencontre>
+        </journee>
+        <journee date="2002-02-25">
+            <rencontre>
+                <equipeA score="0" >OM</equipeA>
+                <equipeB score="2">LOSC</equipeB>
+            </rencontre>
+        </journee>
+    </championnats>
+</football>

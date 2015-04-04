@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exm:A xmlns:exm="http://www.exam.labd" xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <element name="examen">
+    <complexType>
+      <sequence>
+        <element maxOccurs="unbounded" ref="exm:exercice" />
+      </sequence>
+    </complexType>
+  </element>
+  
+  <element name="exercice" type="string"/>
+
+</exm:A>

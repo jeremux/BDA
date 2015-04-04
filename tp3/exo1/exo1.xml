@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exo1 xsi:noNamespaceSchemaLocation="exo1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<heure> 02:30:00 </heure>
+	<heure> 07:45:00</heure>
+	<!--<heure>17:50:00</heure>-->
+
+	<reel>-3333.7</reel>
+	<reel>-3476.4</reel>
+	<!--<reel>-3333.74</reel>-->
+	<!--<reel>5</reel>-->
+	<!--<reel>-3333.74</reel>-->
+	
+	<quatreCarac>azer</quatreCarac>
+	<quatreCarac>²*-+</quatreCarac>
+	<!--<quatreCarac></quatreCarac>-->
+	<!--<quatreCarac>1</quatreCarac>-->
+	
+	<image>jpg</image>
+	<image>png</image>
+	<image>gif</image>
+	<!--<image>autre</image>-->
+	
+	<isbn>1234567890123</isbn>
+	<!--<isbn>123456789012</isbn>-->
+	<!--<isbn>abcdefghijklm</isbn>-->
+</exo1>
+

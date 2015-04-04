@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:simpleType name="typeAnnee">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[1-2][0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:group name="marqueModele">
+		<xs:sequence>
+			<xs:element name="marque" type="xs:string" maxOccurs="1"/>
+			<xs:element name="modele" type="xs:string" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="itemOccaz">
+		<xs:sequence>
+			<xs:group ref="marqueModele"/>
+			<xs:element name="annee" type="typeAnnee" />
+		</xs:sequence>
+		<xs:attribute name="prix" type="xs:integer"/>
+	</xs:complexType>	
+
+	<xs:complexType name="itemNeuf">
+		<xs:sequence>
+			<xs:group ref="marqueModele"/>
+		</xs:sequence>
+		<xs:attribute name="prix" type="xs:integer"/>
+	</xs:complexType>
+	
+	<xs:complexType name="typeOccases">
+		<xs:sequence>
+			<xs:element name="item" type="itemOccaz" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="typeNeuf">	
+		<xs:sequence>
+			<xs:element name="item" type="itemNeuf" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+
+	
+	
+	
+	<xs:element name="stock">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="occases" type="typeOccases" maxOccurs="1"/>
+				<xs:element name="neufs" type="typeNeuf" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="nom" type="xs:NMTOKEN"/>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

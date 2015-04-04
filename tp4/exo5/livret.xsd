@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:insee="http://xml.insee.fr/schema"
+        xmlns:liv="http://www.livretDeFamille.com"
+        targetNamespace="http://www.livretDeFamille.com">
+
+
+    <xsd:import namespace="http://xml.insee.fr/schema" schemaLocation="individu.xsd"/>
+    <xsd:import namespace="http://xml.insee.fr/schema" schemaLocation="insee-commun.xsd"/>
+
+    <xsd:complexType name="DecesType">
+        <xsd:sequence>
+            <xsd:element name="DateDeces" type="insee:DateType" minOccurs="1"/>
+            <xsd:element name="LieuDeces" type="insee:LieuType" minOccurs="1"/>
+            <xsd:element name="NumeroActeDeces" type="insee:NumeroActeType" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ParentType">
+        <xsd:sequence>
+            <xsd:element name="Noms" type="insee:NomDeFamilleSeulType"/>
+            <xsd:element name="Prenoms" type="insee:PrenomsOfficielsSeulsType"/>
+            <xsd:element name="Naissance" type="insee:NaissanceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="acteDeMariageType">
+        <xsd:sequence>
+            <xsd:element name="epoux" type="liv:ParentType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="epouse" type="liv:ParentType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="lieu" type="insee:LieuType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="date" type="insee:DateType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+
+        <!-- Les balises commentées ci dessous sont invalides: POURQUOI ?
+        <xsd:attribute name="lieu" type="insee:LieuType" use="required"/>
+        <xsd:attribute name="date" type="insee:DateType" use="required"/>-->
+    </xsd:complexType>
+
+
+
+    <xsd:complexType name="acteDecesTypeEpoux">
+        <xsd:sequence>
+            <xsd:element name="epoux" type="liv:DecesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="epouse" type="liv:DecesType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="enfantType">
+        <xsd:sequence>
+            <xsd:element name="Noms" type="insee:NomDeFamilleSeulType"/>
+            <xsd:element name="Prenoms" type="insee:PrenomsOfficielsSeulsType"/>
+            <xsd:element name="acteDeNaissance" type="insee:NaissanceType"/>
+            <xsd:element name="deces" type="insee:DecesType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="enfantsType">
+        <xsd:sequence>
+            <xsd:element name="enfant" type="liv:enfantType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="livretDeFamille">
+        <xsd:sequence>
+            <xsd:element name="acteMariage" type="liv:acteDeMariageType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="acteDeces" type="liv:acteDecesTypeEpoux" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="enfants" type="liv:enfantsType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+	<xsd:element name="livret" type="liv:livretDeFamille" />
+
+
+</xsd:schema>

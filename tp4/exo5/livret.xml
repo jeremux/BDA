@@ -1,0 +1,127 @@
+<liv:livret xmlns:liv="http://www.livretDeFamille.com" xmlns:sch="http://xml.insee.fr/schema">
+  <acteMariage>
+    <epoux>
+      <Noms>
+        <sch:NomFamille>token</sch:NomFamille>
+      </Noms>
+      <Prenoms>
+        <!--Zero or more repetitions:-->
+        <sch:Prenom>token</sch:Prenom>
+      </Prenoms>
+      <Naissance>
+        <sch:DateNaissance>2007-10-26</sch:DateNaissance>
+        <sch:LieuNaissance>
+          <!--Optional:-->
+          <sch:Localite code="token">token</sch:Localite>
+          <!--Optional:-->
+          <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+          <!--Optional:-->
+          <sch:Pays code="to">token</sch:Pays>
+        </sch:LieuNaissance>
+        <!--Optional:-->
+        <sch:NumeroActeNaissance>token</sch:NumeroActeNaissance>
+      </Naissance>
+    </epoux>
+    <epouse>
+      <Noms>
+        <sch:NomFamille>token</sch:NomFamille>
+      </Noms>
+      <Prenoms>
+        <!--Zero or more repetitions:-->
+        <sch:Prenom>token</sch:Prenom>
+      </Prenoms>
+      <Naissance>
+        <sch:DateNaissance>2006+02:00</sch:DateNaissance>
+        <sch:LieuNaissance>
+          <!--Optional:-->
+          <sch:Localite code="token">token</sch:Localite>
+          <!--Optional:-->
+          <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+          <!--Optional:-->
+          <sch:Pays code="token">token</sch:Pays>
+        </sch:LieuNaissance>
+        <!--Optional:-->
+        <sch:NumeroActeNaissance>token</sch:NumeroActeNaissance>
+      </Naissance>
+    </epouse>
+    <lieu>
+      <!--Optional:-->
+      <sch:Localite code="token">token</sch:Localite>
+      <!--Optional:-->
+      <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+      <!--Optional:-->
+      <sch:Pays code="to">token</sch:Pays>
+    </lieu>
+    <date>2017-05-15</date>
+  </acteMariage>
+  <acteDeces>
+    <!--Optional:-->
+    <epoux>
+      <DateDeces>2013-12-21+01:00</DateDeces>
+      <LieuDeces>
+        <!--Optional:-->
+        <sch:Localite code="token">token</sch:Localite>
+        <!--Optional:-->
+        <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+        <!--Optional:-->
+        <sch:Pays code="token">token</sch:Pays>
+      </LieuDeces>
+      <NumeroActeDeces>token</NumeroActeDeces>
+    </epoux>
+    <!--Optional:-->
+    <epouse>
+      <DateDeces>2009-10-14</DateDeces>
+      <LieuDeces>
+        <!--Optional:-->
+        <sch:Localite code="token">token</sch:Localite>
+        <!--Optional:-->
+        <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+        <!--Optional:-->
+        <sch:Pays code="token">token</sch:Pays>
+      </LieuDeces>
+      <NumeroActeDeces>token</NumeroActeDeces>
+    </epouse>
+  </acteDeces>
+  <enfants>
+    <!--Zero or more repetitions:-->
+    <enfant>
+      <Noms>
+        <sch:NomFamille>token</sch:NomFamille>
+      </Noms>
+      <Prenoms>
+        <!--Zero or more repetitions:-->
+        <sch:Prenom>token</sch:Prenom>
+      </Prenoms>
+      <acteDeNaissance>
+        <sch:DateNaissance>2014</sch:DateNaissance>
+        <sch:LieuNaissance>
+          <!--Optional:-->
+          <sch:Localite code="token">token</sch:Localite>
+          <!--Optional:-->
+          <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+          <!--Optional:-->
+          <sch:Pays code="token">token</sch:Pays>
+        </sch:LieuNaissance>
+        <!--Optional:-->
+        <sch:NumeroActeNaissance>token</sch:NumeroActeNaissance>
+      </acteDeNaissance>
+      <deces>
+        <!--Optional:-->
+        <sch:TypeDeces>A</sch:TypeDeces>
+        <!--Optional:-->
+        <sch:DateDeces>2005-09-12+02:00</sch:DateDeces>
+        <!--Optional:-->
+        <sch:LieuDeces>
+          <!--Optional:-->
+          <sch:Localite code="token">token</sch:Localite>
+          <!--Optional:-->
+          <sch:DivisionTerritoriale code="token">token</sch:DivisionTerritoriale>
+          <!--Optional:-->
+          <sch:Pays code="token">token</sch:Pays>
+        </sch:LieuDeces>
+        <!--Optional:-->
+        <sch:NumeroActeDeces>token</sch:NumeroActeDeces>
+      </deces>
+    </enfant>
+  </enfants>
+</liv:livret>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="football" type="footballType">
+    <xs:annotation>
+      <xs:documentation>New document created with EditiX at Fri Jan 30 21:21:55 CET 2015</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+    <xs:complexType name="journeeType">
+    <xs:sequence>
+      <xs:element type="rencontreType" name="rencontre"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="date" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="clubsType">
+    <xs:sequence>
+      <xs:element type="clubType" name="club" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="footballType">
+    <xs:sequence>
+      <xs:element type="clubsType" name="clubs"/>
+      <xs:element type="championnatsType" name="championnats"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="championnatsType">
+    <xs:sequence>
+      <xs:element type="journeeType" name="journee" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="equipeBType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="score" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="rencontreType">
+    <xs:sequence>
+      <xs:element type="equipeAType" name="equipeA"/>
+      <xs:element type="equipeBType" name="equipeB"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="equipeAType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="score" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="clubType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

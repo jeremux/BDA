@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	
+<!-- DEFINITION DES TYPES -->
+	
+<!-- heure comprise entre 2h30 et 16h50 -->
+	<xs:simpleType name="typeHeure">
+		<xs:restriction base="xs:time">
+			<xs:minInclusive value="02:30:00"/>
+			<xs:maxInclusive value="16:50:00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- nombre reel >= -3476.4 et < 5 en précision simple -->
+	<xs:simpleType name="typeReel">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="1"/>
+			<xs:minInclusive value="-3476.4"/>
+			<xs:maxExclusive value="5.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- chaine de 4 caractères -->
+	<xs:simpleType name="quatreCaracT">
+		<xs:restriction base="xs:string">
+			<xs:length value="4" fixed="true"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="typeImage">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="jpg"/>
+			<xs:enumeration value="gif"/>
+			<xs:enumeration value="png"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="typeIsbn">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[0-9]{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:element name="exo1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="heure" type="typeHeure" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="reel" type="typeReel" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="quatreCarac" type="quatreCaracT" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="image" type="typeImage" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="isbn" type="typeIsbn" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

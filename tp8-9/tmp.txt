@@ -1,0 +1,5 @@
+ return element op {
+                attribute val {$e/@val},
+                $partG,
+                $partD
+            }

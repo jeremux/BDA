@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New document created with EditiX at Wed Jan 21 19:33:38 CET 2015 -->
+
+<q1>
+<livre>
+	<titre>edition</titre>
+	<edition>editeur</edition>
+</livre>
+<livre>
+	<titre>bidon</titre>
+	<edition>bidon</edition>
+</livre>
+</q1>
+

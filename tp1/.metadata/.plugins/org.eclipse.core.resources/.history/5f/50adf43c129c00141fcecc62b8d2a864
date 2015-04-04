@@ -1,0 +1,90 @@
+package exo2;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.xml.sax.*;
+import org.xml.sax.helpers.* ;
+
+public class Superficie extends DefaultHandler
+{
+	
+	private HashMap<Integer, Double> superficieMaisons;
+	private int currentId;
+	
+	public Superficie() 
+	{
+		super();
+		this.superficieMaisons = new HashMap<Integer, Double>();
+		this.currentId=-1;
+	}
+	
+	public void add(int id, Double surface)
+	{
+		if(this.superficieMaisons.containsKey(id))
+		{
+			this.superficieMaisons.put(id, superficieMaisons.get(id)+surface);
+		}
+		else 
+		{
+			System.out.println("ajout dans "+id+" "+surface);
+			this.superficieMaisons.put(id, surface);
+		}
+	}
+	
+	public void print()
+	{
+		for(Integer key: superficieMaisons.keySet())
+		{
+			System.out.println("Maison "+key+":");
+			System.out.println("\tSuperficie totale : "+superficieMaisons.get(key));
+		}
+	}
+	
+	
+
+	public void startElement(String nameSpaceURI, String localName, String rawName, Attributes attributs) throws SAXException 
+	{
+		double surface;
+		boolean inSurfaceElement=false;
+		for (int index = 0; index < attributs.getLength(); index++) 
+		{ 
+			if(attributs.getLocalName(index).equalsIgnoreCase("id"))
+			{
+				
+				currentId = Integer.parseInt(attributs.getValue(index));
+				System.out.println("key = "+currentId);
+			}
+			
+			if(attributs.getLocalName(index).equalsIgnoreCase("surface-m2"))
+			{
+				surface = Double.parseDouble(attributs.getValue(index));
+				System.out.println("\tsurface = "+surface);
+				//if(key!=-1)
+				{
+					this.add(currentId, surface);
+					System.out.println("ajout");
+				}
+			}
+		}
+	}
+	
+
+	
+	public static void main(String[] args) 
+	{
+		try {
+			Superficie s = new Superficie();
+			XMLReader saxReader = XMLReaderFactory.createXMLReader();
+			saxReader.setContentHandler(s);
+			saxReader.parse(args[0]);
+			s.print();
+			
+		} catch (Exception t) {
+			t.printStackTrace();
+		}
+	}
+	
+
+}

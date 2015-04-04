@@ -1,0 +1,47 @@
+*****************
+***** a.xml *****
+*****************
+<?xml version="1.0" encoding="UTF-8"?>
+<a:A xsi:schemaLocation="http://www.a.com a.xsd" 
+	xmlns:b="http://www.b.com" 
+	xmlns:a="http://www.a.com" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<b:B> bla bla bla (Mc Leod[2007])</b:B>
+</a:A>
+*****************
+***** a.xsd *****
+*****************
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:b="http://www.b.com"
+    targetNamespace="http://www.a.com">
+
+   <xsd:import namespace="http://www.b.com" schemaLocation="b.xsd"/>
+
+
+    <xsd:element name="A">
+        <xsd:complexType>
+            <xsd:sequence minOccurs="1" maxOccurs="1">
+                <xsd:element ref="b:B"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+
+
+</xsd:schema>
+*****************
+***** b.xsd *****
+*****************
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.b.com">
+
+    <xsd:element name="B" type="xsd:string" />
+</xsd:schema>
+

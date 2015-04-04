@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Jérémy FONTAINE
+	 MS2 info
+	 TP1 exo1
+ -->
+ 
+<geographie>
+	<pays>
+		<nom>France</nom>
+		<capitale>Paris</capitale>
+		<populations date="2007">64 102 100</populations>
+	</pays>
+	<pays>
+		<nom>Italie</nom>
+		<capitale>Rome</capitale>
+		<populations>58 133 509</populations>
+	</pays>
+	<pays>
+		<nom>Espagne</nom>
+		<capitale>Madrid</capitale>
+		<populations date="2006">44 708 964</populations>
+	</pays>
+</geographie>

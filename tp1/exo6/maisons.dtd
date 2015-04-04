@@ -1,0 +1,25 @@
+<!ELEMENT maisons (maison+)>
+<!ELEMENT maison (RDC,étage)>
+<!ELEMENT RDC (cuisine|WC|séjour|bureau|garage)+>
+<!ELEMENT étage (terrasse|chambre|salledeBain|mirador)+ >
+<!ELEMENT chambre (#PCDATA|alcove)* >
+<!ELEMENT cuisine (#PCDATA) >
+<!ELEMENT WC (#PCDATA) >
+<!ELEMENT séjour (#PCDATA) >
+<!ELEMENT bureau (#PCDATA)>
+<!ELEMENT alcove EMPTY >
+<!ELEMENT terrasse EMPTY >
+<!ELEMENT garage EMPTY >
+<!ELEMENT salledeBain (#PCDATA)>
+<!ELEMENT mirador (#PCDATA) >
+
+<!ATTLIST maison  id CDATA #REQUIRED >
+<!ATTLIST cuisine surface-m2 CDATA #REQUIRED >
+<!ATTLIST séjour surface-m2 CDATA #REQUIRED 
+				 fenetre CDATA #IMPLIED >
+<!ATTLIST bureau surface-m2 CDATA #REQUIRED >
+<!ATTLIST chambre surface-m2 CDATA #REQUIRED 
+				  fenetre CDATA #IMPLIED >
+<!ATTLIST alcove surface-m2 CDATA #REQUIRED >
+<!ATTLIST salledeBain surface-m2 CDATA #REQUIRED >
+<!ATTLIST mirador surface-m2 CDATA #REQUIRED >

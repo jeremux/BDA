@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="typeClub">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" use="required" type="xs:ID"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="typeEquipe">
+        <xs:simpleContent>
+            <xs:extension base="xs:IDREF">
+                <xs:attribute name="score" use="required" type="xs:nonNegativeInteger"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="listeClubs">
+        <xs:sequence minOccurs="20" maxOccurs="20">
+            <xs:element name="club" type="typeClub"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    xc
+
+    <xs:complexType name="typeRencontre">
+        <xs:sequence>
+            <xs:element name="equipeA" type="typeEquipe"/>
+            <xs:element name="equipeB" type="typeEquipe"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="typeJournee">
+        <xs:sequence minOccurs="10" maxOccurs="10">
+            <xs:element name="rencontre" type="typeRencontre"/>
+        </xs:sequence>
+        <xs:attribute name="date" use="required" type="xs:date"/>
+    </xs:complexType>
+
+    <xs:complexType name="typeChamp">
+        <xs:sequence minOccurs="38" maxOccurs="38">
+            <xs:element name="journee" type="typeJournee"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="football">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="clubs" type="listeClubs"/>
+                <xs:element name="championnats" type="typeChamp"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
