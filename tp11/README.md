@@ -272,33 +272,78 @@ WHERE { ?ami2 humans:hasFriend ?ami1  }
 ##Exo 2:
 ###Q1:
 
-```sparql
+L'espace de nom associé à l'ontologie décrite est:
+<http://www.inria.fr/2007/09/11/humans.rdfs>
 
-```
+La propriété age <http://www.inria.fr/2007/09/11/humans.rdfs#age> peut porter sur n'importe quelle Classe. Le domaine et le co-domaine ne sont pas préciser. 
 
 ###Q2:
 
-```sparql
+Les classes définies dans l'ontologie étudiée:
 
+```sparql
+SELECT DISTINCT ?classe
+WHERE
+{
+	?classe a rdfs:Class
+	
+}
 ```
 
 ###Q3:
 
-```sparql
+Les liens subClassOf de l'ontologie
 
+```sparql
+SELECT DISTINCT ?lien
+WHERE
+{
+	?x rdfs:subClassOf ?lien
+	
+}
 ```
 
 ###Q4:
 
-```sparql
+Définition et traduction de shoesize
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT DISTINCT ?definition ?traduction
+WHERE 
+{
+	humans:shoesize rdfs:comment ?definition
+	humans:shoesize rdfs:label ?traduction
+	FILTER langMatches(lang(?definition),"FR")
+	FILTER langMatches(lang(?traduction),"FR")
+	
+}
 ```
+
+
 
 ###Q5:
 
-```sparql
+ Synonymes du terme "personne" 
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT DISTINCT ?synonyme
+WHERE 
+{
+	humans:Person rdfs:label ?synonyme
+	FILTER langMatches(lang(?synonyme),"FR")	
+}
 ```
+
+On obtient:
+
+*	homme
+*  humain
+*  personne
+*  être humain
 
 ###Q6:
 
