@@ -353,30 +353,80 @@ On obtient:
 
 ##Exo 3:
 ###Q1:
-*  1
+*  1 (Instances chargées seules)
+
+Les ressources de types Animal :
 
 ```sparql
-
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?ressourceAnimal
+WHERE 
+{
+	?ressourceAnimal a humans:Animal
+}
 ```
+On obtient aucune réponse.
 
-*  2
+Les ressources de types Person :
 
 ```sparql
-
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?ressourcePerson
+WHERE 
+{
+	?ressourcePerson a humans:Person
+}
 ```
+
+On obtient 7 réponses.
+
+*  2 (Schéma et instances chargés)
+
+Après avoir chargé le schéma, on obtient 17 ressources de types Animal et Person. On obtient plus de triplets car on a chargé le shéma en plus des instances, par inférence de nouveaux triplets sont donc créés.
 
 ###Q2:
 *  1
 
 ```sparql
-
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?male ?epouse
+WHERE 
+{
+	{?male a humans:Male}
+	{
+	{?male humans:hasSpouse ?epouse}
+	UNION
+	{?epouse humans:hasSpouse ?male}
+	}
+}
 ```
+
+On obient 3 résultats, ce qui est incomplet il manque au moins William et Laura. Ce qui est normal vu que William n'est pas de type Male.
 
 *  2
 
-```sparql
+En modifiant la partie concernant Lucas:
 
+```xml
+<Man rdf:ID="Lucas">
+	<shoesize>7</shoesize>
+	<trouserssize>28</trouserssize>
+	<age>12</age>
+	<shirtsize>8</shirtsize>
+	<name>Lucas</name>
+	<hasMother rdf:resource="#Catherine"/>
+	<hasFather rdf:resource="#Karl"/>
+</Man>
 ```
+
+Et en relançant la requête précedente, on a cette fois ci le resulat
+Karl et Catherine en plus.
+
+Ceci est dû aux règles d'inférences domaine/co-domaine (règle 6 du cours).
+
+(Lucas hasFather Karl) and (hasFather rdfs:range Male) => Karl rdf:type Male
+
+
 
 ###Q3:
 
