@@ -444,6 +444,7 @@ WHERE
 
 On obtient 7 résultats.
 
+
 ###Q4:
 
 ```sparql
