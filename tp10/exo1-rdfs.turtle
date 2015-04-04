@@ -1,0 +1,25 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix nss: <http://www.labd.org/2015/exo1/concept#> .
+@prefix ns: <http://www.labd.org/2015/exo1/instance#> .
+
+nss:Voiture a rdfs:Class .
+
+
+ns:marque
+	a rdfs:Property;
+	rdfs:domain nss:Voiture;
+	#rfs:range rdfs:Literal #pour une chaine
+	rdfs:range nss:Marque. #pour utiliser Citroen comme concept (ns:Citroen)
+
+nss:Marque a rdfs:Class .
+
+nss:nom
+	a rdfs:Property;
+	rdfs:domain ns:Marque;
+	rdfs:range rdfs:Literal.
+
+nss:fondee
+	a rdfs:Property;
+	rdfs:domain ns:Marque;
+	rdfs:range rdfs:Literal.
+

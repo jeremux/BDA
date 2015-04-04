@@ -1,0 +1,14 @@
+#on ne peux pas ecrire de triplets
+#composés: Boby pense (leon etatSante malade)
+
+#On utilise la réification:
+
+@prefix ns0: <http://labd/exo2/reification#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ns0:Boby ns0:pense [
+ a rdf:Statement ;
+ rdf:subject ns0:leon ;
+ rdf:predicate ns0:etatSante ;
+ rdf:object ns0:malade
+ ] .

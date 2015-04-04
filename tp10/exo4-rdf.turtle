@@ -1,0 +1,22 @@
+@prefix base: <http://www.labd.org/stages#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+base:Personne rdf:type rdfs:Class .
+base:Stagiarire rdf:type rdfs:Class . 
+base:Stagiare rdfs:subClassOf base:Personne .
+base:Tuteur rdf:type rdfs:Class .
+base:Tuteur rdfs:subClassOf base:Personne .
+base:encadre rdfs:type rdf:Property .
+base:encadre rdfs:domain base:Tuteur .
+base:encadre rdfs:range base:Stagiare .
+base:encadre rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/knows> .
+base:Ali base:encadre: base:Louis .
+
+#a partir de ces triplets on peut inférer les suivantes
+
+base:Ali <http://xmlns.com/foaf/0.1/knows> base:Tuteur .
+base:Ali rdf:type base:Tuteur .
+base:Louis rdf:Type base:Stagiare .
+base:Ali rdf:Type base:Personne .
+base:Louis rdf:Type base:Personne .

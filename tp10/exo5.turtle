@@ -1,0 +1,98 @@
+@prefix ex5: <http://www.labd.org/2015/exo5#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex5:Joueur          a               	rdfs:Class .
+ex5:Sport           a               	rdfs:Class .
+ex5:Terrain         a                   rdfs:Class .
+ex5:TerrainFoot     rdfs:subClassOf     ex5:Terrain .
+ex5:TerrainBasket   rdfs:subClassOf     ex5:Terrain .
+ex5:SportCollectif  rdfs:subClassOf 	ex5:Sport .
+ex5:SportIndividuel rdfs:subClassOf 	ex5:Sport .
+ex5:JoueurFoot      rdfs:subClassOf 	ex5:Joueur .
+ex5:JoueurBasket    rdfs:subClassOf 	ex5:Joueur .
+ex5:Titre			a					rdfs:Class .
+ex5:TitreIndividuel rdfs:subClassOf 	rdfs:Titre .
+ex5:TitreIndividuel rdfs:subClassOf 	rdfs:Titre .
+ex5:BasketFIBA      rdfs:subClassOf     ex5:Basket .
+ex5:BasketNBA       rdfs:subClassOf     ex5:Basket .
+
+ex5:TerrainFoot     ex5:lonMin			"90" .
+ex5:TerrainFoot     ex5:longMax			"120" .
+ex5:TerrainFoot     ex5:largMin			"45" .
+ex5:TerrainFoot     ex5:largMax			"90" .
+
+ex5:Football 		ex5:cible		    "Panier" .
+ex5:Football		ex5:nbJoueursEquipe "11" .
+ex5:Football		ex5:lieu			ex5:TerrainFoot .
+ex5:Football		ex5:dureeMatchMin   "90" .
+ex5:Football 		ex5:nbPeriode		"2" .
+ex5:Football		ex5:dureePeriodeMin "45" .
+ex5:Football 		ex5:dureePauseMin   "15" . 
+
+ex5:Basket          ex5:cible           "but" .
+ex5:Basket 			ex5:nbJoueursEquipe "5" .
+ex5:Basket          ex5:lieu            ex5:TerrainBasket .
+ex5:Basket          ex5:nbPeriode       "4" .
+ex5:BasketFIBA      ex5:dureeMatchMin   "40" .
+ex5:BasketFIBA      ex5:dureePeriodeMin "10" .
+ex5:BasketNBA       ex5:dureeMatchMin   "48" .
+ex5:BasketNBA       ex5:dureePeriodeMin "12" .
+
+ex5:cible
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range  rdfs:Literal .
+
+ex5:nbJoueursEquipe
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range rdfs:Literal .
+
+ex5:lieu
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range rdfs:Terrain .
+
+ex5:dureeMatchMin
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range rdfs:Literal.
+
+ex5:nbPeriode
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range rdfs:Literal.
+
+ex5:dureePeriodeMin
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range rdfs:Literal.
+
+ex5:dureePause
+	a rdfs:Property;
+	rdfs:domain rdfs:SportCollectif;
+	rdfs:range rdfs:Literal.
+
+ex5:largMin
+	a rdfs:Property;
+	rdfs:domain rdfs:Terrain;
+	rdfs:range rdfs:Literal.
+
+ex5:largMax
+	a rdfs:Property;
+	rdfs:domain rdfs:Terrain;
+	rdfs:range rdfs:Literal.
+
+ex5:longMin
+	a rdfs:Property;
+	rdfs:domain rdfs:Terrain;
+	rdfs:range rdfs:Literal.
+
+ex5:longMax
+	a rdfs:Property;
+	rdfs:domain rdfs:Terrain;
+	rdfs:range rdfs:Literal.
+
+
+

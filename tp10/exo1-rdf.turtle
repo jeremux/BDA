@@ -1,0 +1,8 @@
+@prefix nss: <http://www.labd.org/2015/exo1/concept#> .
+@prefix ns: <http://www.labd.org/2015/exo1/instance#> .
+
+#ns:C4 a nss:Voiture. Pas la peine par inférence
+ns:C4 ns:marque ns:Marque.
+#ns:CItroen a nss:Marque.
+nss:Marque nss:nom "Citroen".
+nss:Marque nss:fondee "1991".
