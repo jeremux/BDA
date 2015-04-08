@@ -472,7 +472,7 @@ WHERE
 }
 ```
 
-La propriété hasAncestor n'est certes pas utilisé dans le fichier d'instance mais celle ci est définie dans le fichier du schéma associé comme étant sur-propriété de hasParent.
+La propriété hasAncestor n'est certes pas utilisée dans le fichier d'instance mais celle ci est définie dans le fichier du schéma associé comme étant sur-propriété de hasParent.
 
 Ansi pour tous les couples (x,y) tel que l'instance "x hasParent y" est définie alors par inférence on aura "x hasAncestor y" .
 
