@@ -460,7 +460,22 @@ On obtient 7 résultats.
 
 ###Q4:
 
-```sparql
+Les instances de la relation hasAncestor:
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT DISTINCT ?descendant ?ancetre
+WHERE 
+{
+	?descendant humans:hasAncestor ?ancetre
+}
 ```
 
+La propriété hasAncestor n'est certes pas utilisé dans le fichier d'instance mais celle ci est définie dans le fichier du schéma associé comme étant sur-propriété de hasParent.
+
+Ansi pour tous les couples (x,y) tel que l'instance "x hasParent y" est définie alors par inférence on aura "x hasAncestor y" .
+
+Règle 2 d'inférence du cours:
+
+(x,p,y) and (p,rdf:subPropertyOf,p') => (x,p',y)
