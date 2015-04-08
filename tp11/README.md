@@ -253,6 +253,7 @@ WHERE
  }
 ```
 
+
 ###Q8:
 
 Clôture symétrique de la relation hasFriend:
@@ -265,9 +266,21 @@ WHERE { ?ami2 humans:hasFriend ?ami1  }
 
 ###Q9:
 
-```sparql
+Les personnes de types Person mais pas de type Man.
 
+```sparql
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT DISTINCT ?personneNonHomme 
+WHERE 
+{
+	?personneNonHomme a humans:Person 
+	FILTER(NOT EXISTS { ?personneNonHomme a humans:Man } )
+}
 ```
+
+On constate qu'on récupère, malgré tous, des personnes qui sont des homme. Ceci est dû au fait que dans le fichier rdf il existe des hommes n'ayant pas le type Man clairement indiqué. 
+(PS: même après avoir chargé le schéma des hommes persistent, étant donné que leur type n'hérite pas de Man)
 
 ##Exo 2:
 ###Q1:
