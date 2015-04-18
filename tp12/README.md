@@ -219,7 +219,14 @@ SELECT ?s  ?d WHERE
 Connaissances immédiates de James Bond et éventuellement leur page personnelle.
 
 ```sparql
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
 
+SELECT ?nomConnaissances ?homePage WHERE
+{
+	<http://bond007.org/RDF/mes_donnees.rdf#me> foaf:knows ?connaissance
+	OPTIONAL { ?connaissance foaf:homepage ?homePage}
+	bind(strafter(?connaissance,"#") as ?nomConnaissances)
+}
 ```
 
 ###Q2:
@@ -243,7 +250,14 @@ Connaissances proches et lointaines de James Bond
 Connaissances immédiates de James Bond qui n'ont pas de téléphone.
 
 ```sparql
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
 
+SELECT ?connaissance ?homePage WHERE
+{
+	<http://bond007.org/RDF/mes_donnees.rdf#me> foaf:knows ?connaissance
+	OPTIONAL { ?connaissance foaf:homepage ?homePage}
+	FILTER NOT EXISTS{?connaissance foaf:phone ?numPhone}
+}
 ```
 
 ###Q5:
@@ -251,7 +265,13 @@ Connaissances immédiates de James Bond qui n'ont pas de téléphone.
 Toutes les personnes et leur nombre de connaissances immédiates.
 
 ```sparql
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
 
+SELECT ?x (COUNT(?connaissance) AS ?nbConnaissance) WHERE
+{
+	?x foaf:knows ?connaissance
+}
+GROUP BY ?x
 ```
 
 
