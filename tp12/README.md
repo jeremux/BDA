@@ -269,7 +269,11 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT ?x (COUNT(?connaissance) AS ?nbConnaissance) WHERE
 {
-	?x foaf:knows ?connaissance
+	?x a <http://xmlns.com/foaf/0.1/Person>
+	OPTIONAL
+	{
+		?x foaf:knows ?connaissance
+	}	
 }
 GROUP BY ?x
 ```
