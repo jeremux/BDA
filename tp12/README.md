@@ -234,7 +234,18 @@ SELECT ?nomConnaissances ?homePage WHERE
 Connaissances immédiates de James Bond et éventuellement leur page Web.
 
 ```sparql
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
 
+SELECT DISTINCT ?nomConnaissances ?pageWeb WHERE
+{
+	<http://bond007.org/RDF/mes_donnees.rdf#me> foaf:knows ?connaissance
+	OPTIONAL 
+	{ 
+		?connaissance ?ppty ?pageWeb
+		?pageWeb a <http://xmlns.com/foaf/0.1/Document>
+	}
+	bind(strafter(?connaissance,"#") as ?nomConnaissances)
+}
 ```
 
 ###Q3:
@@ -242,7 +253,13 @@ Connaissances immédiates de James Bond et éventuellement leur page Web.
 Connaissances proches et lointaines de James Bond
 
 ```sparql
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
 
+SELECT DISTINCT ?nomConnaissance WHERE
+{
+	<http://bond007.org/RDF/mes_donnees.rdf#me> foaf:knows+ ?connaissance
+	bind(strafter(?connaissance,"#") as ?nomConnaissance)
+}
 ```
 
 ###Q4:
